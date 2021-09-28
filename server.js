@@ -6,9 +6,11 @@ if (process.env.NODE_ENV !== "production"){
 const express = require("express");
 const app = express();
 const expressLayouts = require("express-ejs-layouts");
+const bodyParser = require("body-parser");
 
 //Get Routers configured
 const indexRouter = require("./routes/index");
+const authorsRouter = require("./routes/authors");
 
 //Setup DB / Models
 const mongoose = require("mongoose");
@@ -35,11 +37,12 @@ app.set("layout", "layouts/layout");
 //App Uses
 app.use(expressLayouts);
 app.use(express.static("public"));
+app.use(bodyParser.urlencoded({limit:"10mb", extended:false}));
 
 
 //Use Router
 app.use("/", indexRouter);
-
+app.use("/authors", authorsRouter);
 
 //Listening Port
 app.listen(process.env.PORT || 3000);
