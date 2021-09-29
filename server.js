@@ -10,7 +10,8 @@ const bodyParser = require("body-parser");
 
 //Get Routers configured
 const indexRouter = require("./routes/index");
-const authorsRouter = require("./routes/authors");
+const authorRouter = require("./routes/authors");
+const bookRouter = require("./routes/books");
 
 //Setup DB / Models
 const mongoose = require("mongoose");
@@ -42,7 +43,8 @@ app.use(bodyParser.urlencoded({limit:"10mb", extended:false}));
 
 //Use Router
 app.use("/", indexRouter);
-app.use("/authors", authorsRouter);
+app.use("/authors", authorRouter);
+app.use("/books", bookRouter);
 
 //Listening Port
 app.listen(process.env.PORT || 3000);

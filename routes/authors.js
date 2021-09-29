@@ -1,5 +1,4 @@
 const express = require("express");
-const author = require("../models/author");
 const router = express.Router();
 const Author = require("../models/author");
 
@@ -21,7 +20,7 @@ router.get("/", async (req, res)=>{
     }
 });
 
-//New Authors Route
+//New Author Route
 router.get("/new", (req, res)=>{
     res.render("authors/new", { author: new Author() });
 });
